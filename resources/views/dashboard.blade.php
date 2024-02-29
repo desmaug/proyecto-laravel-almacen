@@ -46,6 +46,9 @@
                         <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Widgets</span><span class="badge badge-soft-success menu-arrow">New</span></a>
                     </li>
                     <li>
+                        <a href=""><i data-feather="layers" class="align-self-center menu-icon"></i><span>Usuarios</span></a>
+                    </li>
+                    <li>
                         <a href="{{route('clients.index')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Clientes</span></a>
                     </li>
                 </ul>

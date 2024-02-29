@@ -11,6 +11,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
+                                <th>Direccion</th>
                                 <th>Email</th>
                                 <th>Acciones </th>
                             </tr>
@@ -20,6 +21,7 @@
                             <tr>
                                 <td>{{$row->id}}</td>
                                 <td>{{$row->name}}</td>
+                                <td>{{$row->address}}</td>
                                 <td>{{$row->email}}</td>
                                 <td name="buttons">
                                     <form action="" class="form-table" method="POST">
