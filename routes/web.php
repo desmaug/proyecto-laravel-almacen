@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,9 +34,26 @@ Route::middleware('auth')->group(function () {
 
 //Rutas listar clientes
 
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//Rutas listar clientes
+
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
 Route::post('/clients/store{$id}', [ClientController::class, 'store'])->name('clients.store');
 Route::delete('/clients/deestroy{$id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+
+
+Route::get('/configuracion', [UserController::class, 'config'])->name('user.config');
+Route::post('/user/update', [UserController::class, 'update'])->name('user.update');
+Route::get('/user/avatar/{filename}', [UserController::class, 'getImage'])->name('user.avatar');
+
+
+Route::get('/subir-imagen', [ImageController::class, 'create'])->name('image.create');
+Route::post('/image/save', [ImageController::class, 'save'])->name('image.save');
+
+
+
+
 
 require __DIR__.'/auth.php';

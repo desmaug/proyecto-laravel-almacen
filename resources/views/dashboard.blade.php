@@ -19,6 +19,7 @@
         <link href="{{asset('template/assets/css/metisMenu.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('template/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('template/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('template/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
 
         @livewireStyles
         @livewireScripts
@@ -42,12 +43,14 @@
             <div class="menu-content h-100" data-simplebar>
                 <ul class="metismenu left-sidenav-menu">
                     <li class="menu-label mt-0">Main</li>
+
                     <li>
-                        <a href="widgets.html"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Widgets</span><span class="badge badge-soft-success menu-arrow">New</span></a>
+                        <a href="{{ route('home')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Inicio</span></a>
                     </li>
                     <li>
-                        <a href=""><i data-feather="layers" class="align-self-center menu-icon"></i><span>Usuarios</span></a>
+                        <a href="{{ route('image.create')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Subir Imagenes</span></a>
                     </li>
+                    
                     <li>
                         <a href="{{route('clients.index')}}"><i data-feather="layers" class="align-self-center menu-icon"></i><span>Clientes</span></a>
                     </li>
@@ -82,14 +85,22 @@
                         <li class="dropdown">
                             <a class="nav-link dropdown-toggle waves-effect waves-light nav-user" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-haspopup="false" aria-expanded="false">
-                                <span class="ms-1 nav-user-name hidden-sm">Nick</span>
-                                <img src="{{asset('template/assets/images/users/user-5.jpg')}}" alt="profile-user" class="rounded-circle thumb-xs" />                                 
+                                <span class="ms-1 nav-user-name hidden-sm">{{Auth::user()->name}}</span>
+                                &nbsp;
+                                @include('includes.avatar')                              
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
-                                <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Profile</a>
-                                <a class="dropdown-item" href="#"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Settings</a>
+                                <a class="dropdown-item" href="#"><i data-feather="user" class="align-self-center icon-xs icon-dual me-1"></i> Perfil</a>
+                                <a class="dropdown-item" href="{{ route('user.config')}}"><i data-feather="settings" class="align-self-center icon-xs icon-dual me-1"></i> Configuracion</a>
                                 <div class="dropdown-divider mb-0"></div>
-                                <a class="dropdown-item" href="#"><i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> Logout</a>
+                                <a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i data-feather="power" class="align-self-center icon-xs icon-dual me-1"></i> 
+                                    Salir
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                                
                             </div>
                         </li>
                     </ul><!--end topbar-nav-->
@@ -132,5 +143,12 @@
 
     <!-- App js -->
     <script src="{{asset('template/assets/js/app.js')}}"></script>
+    <script>
+    // Función para simular el clic en el formulario cuando se hace clic en el enlace
+    function logout() {
+        event.preventDefault();
+        document.getElementById('logout-form').submit();
+    }
+    </script>
 
 </html>
