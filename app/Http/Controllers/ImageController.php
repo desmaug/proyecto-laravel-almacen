@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -44,7 +45,7 @@ class ImageController extends Controller
 
         if (isset($image_path)) {
             $image_path_name = time().$image_path->getClientOriginalName();
-            Storage::disk('users')->put($image_path_name, File::get($image_path));
+            Storage::disk('images')->put($image_path_name, File::get($image_path));
             $image->image_path = $image_path_name;
         }
 
@@ -54,5 +55,18 @@ class ImageController extends Controller
             'message' => 'La foto ha sido subida correctamente!!!'
         ]);
 
+    }
+    public function getImage($filename){
+
+        $file = Storage::disk('images')->get($filename);
+
+        return new Response($file, 200);
+    }
+
+    public function detail($id){
+        $image = Image::find($id);
+        return view('image.detail',[
+            'image' => $image
+        ]);
     }
 }

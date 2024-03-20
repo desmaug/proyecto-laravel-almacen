@@ -11,7 +11,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="{{asset('template/assets/images/favicon.ico')}}">
 
         <!-- App css -->
         <link href="{{asset('template/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -131,8 +131,8 @@
         </div>
         <!-- end page-wrapper -->
     </body>
-     <!-- jQuery  -->
-     <script src="{{asset('template/assets/js/jquery.min.js')}}"></script>
+    <!-- jQuery  -->
+    <script src="{{asset('template/assets/js/jquery.min.js')}}"></script>
     <script src="{{asset('template/assets/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('template/assets/js/metismenu.min.js')}}"></script>
     <script src="{{asset('template/assets/js/waves.js')}}"></script>
